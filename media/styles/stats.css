@@ -1,0 +1,157 @@
+/* ═══════════════════════════════════════════════════════════════════
+   Claude Code Monitor — Stats Dashboard Styles
+   Metric cards, charts, and animated counters.
+   ═══════════════════════════════════════════════════════════════════ */
+
+/* ─── Stats Grid ──────────────────────────────────────────────────── */
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  gap: var(--ccm-gap);
+  margin-bottom: 24px;
+}
+
+.stat-card {
+  background: var(--vscode-editorWidget-background, rgba(255,255,255,0.03));
+  border: 1px solid var(--vscode-editorWidget-border, var(--vscode-panel-border, rgba(255,255,255,0.1)));
+  border-radius: var(--ccm-radius-lg);
+  padding: 16px;
+  text-align: center;
+  transition: transform var(--ccm-transition), border-color var(--ccm-transition);
+}
+
+.stat-card:hover {
+  transform: translateY(-2px);
+  border-color: var(--vscode-focusBorder, var(--ccm-blue));
+}
+
+.stat-card-wide {
+  grid-column: span 2;
+}
+
+.stat-icon {
+  font-size: 24px;
+  margin-bottom: 8px;
+  opacity: 0.8;
+}
+
+.stat-value {
+  font-size: 28px;
+  font-weight: 700;
+  color: var(--vscode-editor-foreground);
+  font-variant-numeric: tabular-nums;
+  transition: color var(--ccm-transition);
+  line-height: 1.2;
+  margin-bottom: 4px;
+}
+
+.stat-value.animating {
+  color: var(--ccm-blue);
+}
+
+.stat-label {
+  font-size: 11px;
+  color: var(--vscode-descriptionForeground, #888);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.stat-disclaimer {
+  font-size: 10px;
+  color: var(--vscode-descriptionForeground, #666);
+  margin-top: 6px;
+  font-style: italic;
+}
+
+/* ─── Charts ──────────────────────────────────────────────────────── */
+.stats-charts {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: var(--ccm-gap);
+}
+
+@media (max-width: 700px) {
+  .stats-charts {
+    grid-template-columns: 1fr;
+  }
+}
+
+.chart-container {
+  background: var(--vscode-editorWidget-background, rgba(255,255,255,0.03));
+  border: 1px solid var(--vscode-editorWidget-border, var(--vscode-panel-border, rgba(255,255,255,0.1)));
+  border-radius: var(--ccm-radius-lg);
+  padding: 16px;
+}
+
+.chart-title {
+  font-size: 13px;
+  font-weight: 600;
+  margin-bottom: 12px;
+  color: var(--vscode-editor-foreground);
+}
+
+canvas {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+/* ─── Language Legend ──────────────────────────────────────────────── */
+.language-legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 12px;
+}
+
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 11px;
+  color: var(--vscode-editor-foreground);
+  cursor: pointer;
+  padding: 2px 6px;
+  border-radius: 3px;
+  transition: background var(--ccm-transition);
+}
+
+.legend-item:hover {
+  background: var(--vscode-list-hoverBackground, rgba(255,255,255,0.05));
+}
+
+.legend-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.legend-label {
+  white-space: nowrap;
+}
+
+.legend-count {
+  color: var(--vscode-descriptionForeground, #888);
+  font-variant-numeric: tabular-nums;
+}
+
+/* ─── Speed Indicator ─────────────────────────────────────────────── */
+.speed-indicator {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.speed-indicator.fast {
+  color: var(--ccm-green);
+}
+
+.speed-indicator.medium {
+  color: var(--ccm-yellow);
+}
+
+.speed-indicator.slow {
+  color: var(--vscode-descriptionForeground, #888);
+}

@@ -1,0 +1,77 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" width="256" height="256">
+  <defs>
+    <!-- Background gradient -->
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#1a1a2e"/>
+      <stop offset="100%" style="stop-color:#16213e"/>
+    </linearGradient>
+    <!-- Accent gradient (Claude orange-coral) -->
+    <linearGradient id="accent" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#da7756"/>
+      <stop offset="100%" style="stop-color:#e8956a"/>
+    </linearGradient>
+    <!-- Green for additions -->
+    <linearGradient id="green" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#2ea043"/>
+      <stop offset="100%" style="stop-color:#238636"/>
+    </linearGradient>
+    <!-- Blue glow -->
+    <linearGradient id="blue" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#58a6ff"/>
+      <stop offset="100%" style="stop-color:#388bfd"/>
+    </linearGradient>
+    <!-- Glow filter -->
+    <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur in="SourceGraphic" stdDeviation="3" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    <filter id="softglow" x="-10%" y="-10%" width="120%" height="120%">
+      <feGaussianBlur in="SourceGraphic" stdDeviation="1.5" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+
+  <!-- Rounded square background -->
+  <rect x="4" y="4" width="248" height="248" rx="40" ry="40" fill="url(#bg)"/>
+  <rect x="4" y="4" width="248" height="248" rx="40" ry="40" fill="none" stroke="#2a2a4a" stroke-width="2"/>
+
+  <!-- Eye icon (monitor symbol) - outer -->
+  <ellipse cx="128" cy="110" rx="72" ry="44" fill="none" stroke="url(#accent)" stroke-width="5" filter="url(#softglow)"/>
+
+  <!-- Eye pupil (inner circle with code brackets) -->
+  <circle cx="128" cy="110" r="24" fill="url(#accent)" opacity="0.9"/>
+  <circle cx="128" cy="110" r="16" fill="#1a1a2e"/>
+
+  <!-- Code brackets inside pupil -->
+  <text x="120" y="116" font-family="monospace" font-size="18" font-weight="bold" fill="url(#blue)" filter="url(#softglow)">&lt;/&gt;</text>
+
+  <!-- Iris ring glow -->
+  <circle cx="128" cy="110" r="24" fill="none" stroke="url(#accent)" stroke-width="1.5" opacity="0.5"/>
+
+  <!-- Activity bars (like a mini bar chart below the eye) -->
+  <!-- Represents monitoring activity -->
+  <rect x="62" y="170" width="10" height="18" rx="2" fill="url(#blue)" opacity="0.5"/>
+  <rect x="78" y="164" width="10" height="24" rx="2" fill="url(#blue)" opacity="0.6"/>
+  <rect x="94" y="158" width="10" height="30" rx="2" fill="url(#green)" opacity="0.7"/>
+  <rect x="110" y="150" width="10" height="38" rx="2" fill="url(#green)" opacity="0.85"/>
+  <rect x="126" y="155" width="10" height="33" rx="2" fill="url(#accent)" opacity="0.9" filter="url(#softglow)"/>
+  <rect x="142" y="160" width="10" height="28" rx="2" fill="url(#green)" opacity="0.7"/>
+  <rect x="158" y="166" width="10" height="22" rx="2" fill="url(#blue)" opacity="0.6"/>
+  <rect x="174" y="172" width="10" height="16" rx="2" fill="url(#blue)" opacity="0.5"/>
+
+  <!-- Scanning line (horizontal pulse across the eye) -->
+  <line x1="56" y1="110" x2="200" y2="110" stroke="url(#blue)" stroke-width="1" opacity="0.3"/>
+
+  <!-- Status dot (live indicator) -->
+  <circle cx="190" cy="74" r="8" fill="#2ea043" filter="url(#glow)"/>
+  <circle cx="190" cy="74" r="4" fill="#3fb950"/>
+
+  <!-- Bottom text: "MONITOR" -->
+  <text x="128" y="214" text-anchor="middle" font-family="sans-serif" font-size="16" font-weight="700" letter-spacing="4" fill="#58a6ff" opacity="0.8">MONITOR</text>
+</svg>

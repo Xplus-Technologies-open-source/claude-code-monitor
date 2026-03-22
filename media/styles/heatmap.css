@@ -1,0 +1,158 @@
+/* ═══════════════════════════════════════════════════════════════════
+   Claude Code Monitor — Heatmap Styles
+   File heat visualization with color-coded change intensity.
+   ═══════════════════════════════════════════════════════════════════ */
+
+/* ─── Toolbar ─────────────────────────────────────────────────────── */
+.heatmap-toolbar {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 12px;
+}
+
+/* ─── Container ───────────────────────────────────────────────────── */
+.heatmap-container {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+/* ─── File Row ────────────────────────────────────────────────────── */
+.heatmap-row {
+  display: grid;
+  grid-template-columns: minmax(200px, 2fr) 80px 80px 100px 1fr 120px;
+  gap: 8px;
+  align-items: center;
+  padding: 10px 14px;
+  background: var(--vscode-editorWidget-background, rgba(255,255,255,0.03));
+  border: 1px solid var(--vscode-editorWidget-border, var(--vscode-panel-border, rgba(255,255,255,0.08)));
+  border-radius: var(--ccm-radius);
+  cursor: pointer;
+  transition: all var(--ccm-transition);
+}
+
+.heatmap-row:hover {
+  background: var(--vscode-list-hoverBackground, rgba(255,255,255,0.06));
+  border-color: var(--vscode-focusBorder, var(--ccm-blue));
+  transform: translateX(2px);
+}
+
+/* ─── File Info ───────────────────────────────────────────────────── */
+.heatmap-file {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  overflow: hidden;
+}
+
+.heatmap-file-name {
+  font-family: var(--vscode-editor-fontFamily, monospace);
+  font-size: 12px;
+  color: var(--vscode-editor-foreground);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.heatmap-file-lang {
+  font-size: 9px;
+  padding: 1px 5px;
+  border-radius: 3px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  flex-shrink: 0;
+}
+
+/* ─── Metrics ─────────────────────────────────────────────────────── */
+.heatmap-changes {
+  font-size: 13px;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+  text-align: center;
+  color: var(--vscode-editor-foreground);
+}
+
+.heatmap-lines {
+  font-size: 12px;
+  font-variant-numeric: tabular-nums;
+  text-align: center;
+}
+
+.heatmap-lines-plus { color: var(--ccm-green); }
+.heatmap-lines-minus { color: var(--ccm-red); }
+
+/* ─── Heat Bar ────────────────────────────────────────────────────── */
+.heatmap-bar-container {
+  height: 8px;
+  background: var(--vscode-input-background, rgba(255,255,255,0.05));
+  border-radius: 4px;
+  overflow: hidden;
+  position: relative;
+}
+
+.heatmap-bar {
+  height: 100%;
+  border-radius: 4px;
+  transition: width 500ms ease-out;
+  min-width: 4px;
+}
+
+/* Heat levels */
+.heat-1 { background: var(--ccm-blue); }       /* 1-2 changes */
+.heat-2 { background: var(--ccm-yellow); }      /* 3-5 changes */
+.heat-3 { background: #f0883e; }                /* 6-10 changes */
+.heat-4 { background: var(--ccm-red); }         /* 10+ changes */
+
+.heatmap-heat-badge {
+  width: 12px;
+  height: 12px;
+  border-radius: 3px;
+  flex-shrink: 0;
+}
+
+/* ─── Timestamps ──────────────────────────────────────────────────── */
+.heatmap-times {
+  font-size: 10px;
+  color: var(--vscode-descriptionForeground, #888);
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+/* ─── Mini Chart (per file) ───────────────────────────────────────── */
+.heatmap-minichart {
+  display: flex;
+  align-items: flex-end;
+  gap: 1px;
+  height: 24px;
+}
+
+.heatmap-minibar {
+  flex: 1;
+  min-width: 3px;
+  max-width: 8px;
+  background: var(--ccm-blue);
+  border-radius: 1px 1px 0 0;
+  transition: height 300ms ease-out;
+  opacity: 0.7;
+}
+
+.heatmap-minibar:hover {
+  opacity: 1;
+}
+
+/* ─── Column Headers ──────────────────────────────────────────────── */
+.heatmap-header {
+  display: grid;
+  grid-template-columns: minmax(200px, 2fr) 80px 80px 100px 1fr 120px;
+  gap: 8px;
+  padding: 6px 14px;
+  font-size: 10px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: var(--vscode-descriptionForeground, #888);
+  border-bottom: 1px solid var(--vscode-panel-border, rgba(255,255,255,0.1));
+  margin-bottom: 4px;
+}

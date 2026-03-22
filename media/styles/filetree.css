@@ -1,0 +1,200 @@
+/* ═══════════════════════════════════════════════════════════════════
+   Claude Code Monitor — File Tree Styles
+   Animated workspace tree with change indicators.
+   ═══════════════════════════════════════════════════════════════════ */
+
+/* ─── Tree Container ──────────────────────────────────────────────── */
+.file-tree {
+  font-family: var(--vscode-editor-fontFamily, monospace);
+  font-size: 13px;
+  user-select: none;
+}
+
+/* ─── Tree List ───────────────────────────────────────────────────── */
+.tree-list {
+  list-style: none;
+  padding-left: 0;
+}
+
+.tree-list .tree-list {
+  padding-left: 20px;
+  border-left: 1px solid var(--vscode-tree-indentGuidesStroke, rgba(255,255,255,0.1));
+  margin-left: 8px;
+}
+
+/* ─── Tree Item ───────────────────────────────────────────────────── */
+.tree-item {
+  padding: 0;
+}
+
+.tree-item-row {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 3px 8px;
+  border-radius: var(--ccm-radius);
+  cursor: pointer;
+  transition: background var(--ccm-transition);
+}
+
+.tree-item-row:hover {
+  background: var(--vscode-list-hoverBackground, rgba(255,255,255,0.05));
+}
+
+/* ─── Icons ───────────────────────────────────────────────────────── */
+.tree-icon {
+  font-size: 14px;
+  flex-shrink: 0;
+  width: 18px;
+  text-align: center;
+}
+
+.tree-icon-folder {
+  color: var(--vscode-symbolIcon-folderForeground, #dcb67a);
+}
+
+.tree-icon-file {
+  color: var(--vscode-symbolIcon-fileForeground, #c5c5c5);
+}
+
+/* ─── Expand/Collapse Arrow ───────────────────────────────────────── */
+.tree-arrow {
+  width: 16px;
+  height: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 10px;
+  color: var(--vscode-descriptionForeground, #888);
+  transition: transform var(--ccm-transition);
+  flex-shrink: 0;
+}
+
+.tree-arrow.expanded {
+  transform: rotate(90deg);
+}
+
+.tree-arrow.leaf {
+  visibility: hidden;
+}
+
+/* ─── File/Folder Name ────────────────────────────────────────────── */
+.tree-label {
+  flex: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  color: var(--vscode-editor-foreground);
+  font-size: 13px;
+}
+
+/* ─── Change Badge ────────────────────────────────────────────────── */
+.tree-badge {
+  font-size: 10px;
+  padding: 1px 6px;
+  border-radius: 10px;
+  font-weight: 600;
+  flex-shrink: 0;
+  font-variant-numeric: tabular-nums;
+}
+
+.tree-badge-count {
+  background: var(--ccm-blue-bg);
+  color: var(--ccm-blue);
+}
+
+/* ─── Animations ──────────────────────────────────────────────────── */
+
+/* File created — fade in with green glow */
+.tree-item-row.anim-created {
+  animation: tree-fade-in 600ms ease-out;
+}
+
+@keyframes tree-fade-in {
+  from {
+    opacity: 0;
+    transform: translateX(-10px);
+    background: var(--ccm-green-bg);
+  }
+  60% {
+    background: var(--ccm-green-bg);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+    background: transparent;
+  }
+}
+
+/* File modified — golden pulse */
+.tree-item-row.anim-modified {
+  animation: tree-pulse 800ms ease-out;
+}
+
+@keyframes tree-pulse {
+  0% {
+    box-shadow: inset 0 0 0 0 transparent;
+  }
+  30% {
+    box-shadow: inset 0 0 0 2px var(--ccm-yellow);
+    background: var(--ccm-yellow-bg);
+  }
+  100% {
+    box-shadow: inset 0 0 0 0 transparent;
+    background: transparent;
+  }
+}
+
+/* File deleted — red flash and fade out */
+.tree-item-row.anim-deleted {
+  animation: tree-fade-out 1200ms ease-out forwards;
+}
+
+@keyframes tree-fade-out {
+  0% {
+    opacity: 1;
+    background: var(--ccm-red-bg);
+  }
+  30% {
+    background: var(--ccm-red-bg);
+  }
+  100% {
+    opacity: 0.3;
+    text-decoration: line-through;
+    background: transparent;
+  }
+}
+
+/* Deleted label strikethrough */
+.tree-item-row.deleted .tree-label {
+  text-decoration: line-through;
+  color: var(--vscode-descriptionForeground, #888);
+}
+
+/* ─── Size Indicator (proportional to modifications) ──────────────── */
+.tree-size-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.tree-size-dot.size-1 {
+  width: 6px; height: 6px;
+  background: var(--ccm-blue);
+}
+
+.tree-size-dot.size-2 {
+  width: 8px; height: 8px;
+  background: var(--ccm-yellow);
+}
+
+.tree-size-dot.size-3 {
+  width: 10px; height: 10px;
+  background: #f0883e;
+}
+
+.tree-size-dot.size-4 {
+  width: 12px; height: 12px;
+  background: var(--ccm-red);
+}

@@ -1,0 +1,189 @@
+{
+  "name": "claude-code-monitor",
+  "displayName": "Claude Code Monitor",
+  "description": "Real-time file monitoring, diffs, live stats, heatmaps, and session replay for Claude Code CLI",
+  "version": "0.1.0",
+  "publisher": "xplus",
+  "license": "MIT",
+  "icon": "media/icon.png",
+  "engines": {
+    "vscode": "^1.85.0"
+  },
+  "categories": [
+    "Other",
+    "Visualization"
+  ],
+  "keywords": [
+    "claude",
+    "claude-code",
+    "monitor",
+    "diff",
+    "file-watcher",
+    "developer-tools"
+  ],
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "main": "./dist/extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "claude-code-monitor.open",
+        "title": "Claude Code Monitor: Open Panel",
+        "icon": "$(eye)"
+      },
+      {
+        "command": "claude-code-monitor.pause",
+        "title": "Claude Code Monitor: Pause/Resume"
+      },
+      {
+        "command": "claude-code-monitor.clear",
+        "title": "Claude Code Monitor: Clear Session"
+      },
+      {
+        "command": "claude-code-monitor.replay",
+        "title": "Claude Code Monitor: Start Replay"
+      },
+      {
+        "command": "claude-code-monitor.exportLog",
+        "title": "Claude Code Monitor: Export Session Log"
+      },
+      {
+        "command": "claude-code-monitor.toggleSound",
+        "title": "Claude Code Monitor: Toggle Sounds"
+      },
+      {
+        "command": "claude-code-monitor.openExternal",
+        "title": "Claude Code Monitor: Open in Browser (External Window)",
+        "icon": "$(link-external)"
+      }
+    ],
+    "keybindings": [
+      {
+        "command": "claude-code-monitor.open",
+        "key": "ctrl+alt+m",
+        "mac": "cmd+alt+m"
+      },
+      {
+        "command": "claude-code-monitor.openExternal",
+        "key": "ctrl+alt+b",
+        "mac": "cmd+alt+b"
+      }
+    ],
+    "viewsContainers": {
+      "activitybar": [
+        {
+          "id": "claude-monitor",
+          "title": "Claude Code Monitor",
+          "icon": "media/sidebar-icon.svg"
+        }
+      ]
+    },
+    "views": {
+      "claude-monitor": [
+        {
+          "type": "webview",
+          "id": "claude-monitor.sidebarView",
+          "name": "Monitor",
+          "visibility": "visible"
+        }
+      ]
+    },
+    "menus": {
+      "editor/title": [
+        {
+          "command": "claude-code-monitor.open",
+          "group": "navigation",
+          "when": "true"
+        },
+        {
+          "command": "claude-code-monitor.openExternal",
+          "group": "navigation",
+          "when": "true"
+        }
+      ],
+      "commandPalette": [
+        {
+          "command": "claude-code-monitor.openExternal",
+          "when": "true"
+        }
+      ]
+    },
+    "configuration": {
+      "title": "Claude Code Monitor",
+      "properties": {
+        "claude-monitor.enabled": {
+          "type": "boolean",
+          "default": true,
+          "description": "Enable or disable file monitoring"
+        },
+        "claude-monitor.soundEnabled": {
+          "type": "boolean",
+          "default": false,
+          "description": "Enable ambient sound feedback"
+        },
+        "claude-monitor.soundVolume": {
+          "type": "number",
+          "default": 30,
+          "minimum": 0,
+          "maximum": 100,
+          "description": "Sound volume (0-100)"
+        },
+        "claude-monitor.ignoredPaths": {
+          "type": "array",
+          "default": [],
+          "items": {
+            "type": "string"
+          },
+          "description": "Additional file paths to ignore (glob patterns)"
+        },
+        "claude-monitor.showNotifications": {
+          "type": "boolean",
+          "default": false,
+          "description": "Show VS Code toast notifications for file changes"
+        },
+        "claude-monitor.maxHistoryItems": {
+          "type": "number",
+          "default": 1000,
+          "minimum": 100,
+          "maximum": 50000,
+          "description": "Maximum number of change events to keep in history"
+        },
+        "claude-monitor.tokenCostModel": {
+          "type": "string",
+          "enum": [
+            "sonnet",
+            "opus",
+            "haiku"
+          ],
+          "default": "sonnet",
+          "description": "Claude model for token cost estimation"
+        },
+        "claude-monitor.webhookUrl": {
+          "type": "string",
+          "default": "",
+          "description": "Webhook URL to POST session summary on close (Slack, Discord, etc.)"
+        }
+      }
+    }
+  },
+  "scripts": {
+    "compile": "node esbuild.mjs",
+    "compile:types": "tsc -p ./ --noEmit",
+    "watch": "node esbuild.mjs --watch",
+    "build": "node esbuild.mjs --production",
+    "lint": "tsc --noEmit",
+    "package": "npm run build && vsce package --allow-missing-repository"
+  },
+  "devDependencies": {
+    "@types/diff": "^7.0.0",
+    "@types/node": "^20.11.0",
+    "@types/vscode": "^1.85.0",
+    "@vscode/vsce": "^3.2.0",
+    "esbuild": "^0.27.3",
+    "typescript": "^5.7.0"
+  },
+  "dependencies": {
+    "diff": "^7.0.0"
+  }
+}
