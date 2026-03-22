@@ -2,7 +2,7 @@
   "name": "claude-code-live-monitor",
   "displayName": "Claude Code Live Monitor",
   "description": "Real-time file monitoring, diffs, live stats, heatmaps, and session replay for Claude Code CLI",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "repository": {
     "type": "git",
     "url": "https://github.com/Xplus-Technologies-open-source/claude-code-monitor"

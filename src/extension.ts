@@ -28,7 +28,13 @@ let sessionStoragePath: string = '';
 export function activate(context: vscode.ExtensionContext): void {
   const workspaceFolders = vscode.workspace.workspaceFolders;
   if (!workspaceFolders || workspaceFolders.length === 0) {
-    return; // No workspace — nothing to monitor
+    // Show status bar hint so user knows the extension is there but needs a workspace
+    const hint = vscode.window.createStatusBarItem(vscode.StatusBarAlignment.Left, 100);
+    hint.text = '$(eye) Monitor: Open a folder to start';
+    hint.tooltip = 'Claude Code Live Monitor needs a workspace folder to monitor files';
+    hint.show();
+    context.subscriptions.push(hint);
+    return;
   }
 
   const workspaceRoot = workspaceFolders[0].uri.fsPath;
