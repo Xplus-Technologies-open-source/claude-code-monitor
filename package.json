@@ -1,8 +1,12 @@
 {
-  "name": "claude-code-monitor",
-  "displayName": "Claude Code Monitor",
+  "name": "claude-code-live-monitor",
+  "displayName": "Claude Code Live Monitor",
   "description": "Real-time file monitoring, diffs, live stats, heatmaps, and session replay for Claude Code CLI",
-  "version": "0.1.0",
+  "version": "0.1.1",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Xplus-Technologies-open-source/claude-code-monitor"
+  },
   "publisher": "xplus",
   "license": "MIT",
   "icon": "media/icon.png",
@@ -29,32 +33,32 @@
     "commands": [
       {
         "command": "claude-code-monitor.open",
-        "title": "Claude Code Monitor: Open Panel",
+        "title": "Claude Code Live Monitor: Open Panel",
         "icon": "$(eye)"
       },
       {
         "command": "claude-code-monitor.pause",
-        "title": "Claude Code Monitor: Pause/Resume"
+        "title": "Claude Code Live Monitor: Pause/Resume"
       },
       {
         "command": "claude-code-monitor.clear",
-        "title": "Claude Code Monitor: Clear Session"
+        "title": "Claude Code Live Monitor: Clear Session"
       },
       {
         "command": "claude-code-monitor.replay",
-        "title": "Claude Code Monitor: Start Replay"
+        "title": "Claude Code Live Monitor: Start Replay"
       },
       {
         "command": "claude-code-monitor.exportLog",
-        "title": "Claude Code Monitor: Export Session Log"
+        "title": "Claude Code Live Monitor: Export Session Log"
       },
       {
         "command": "claude-code-monitor.toggleSound",
-        "title": "Claude Code Monitor: Toggle Sounds"
+        "title": "Claude Code Live Monitor: Toggle Sounds"
       },
       {
         "command": "claude-code-monitor.openExternal",
-        "title": "Claude Code Monitor: Open in Browser (External Window)",
+        "title": "Claude Code Live Monitor: Open in Browser (External Window)",
         "icon": "$(link-external)"
       }
     ],

@@ -467,7 +467,7 @@ export class ExternalServer {
     window.acquireVsCodeApi = function() {
       return {
         postMessage: function(msg) {
-          console.log('[Claude Monitor] postMessage (no-op in browser):', msg.type || msg);
+          console.log('[Claude Live Monitor] postMessage (no-op in browser):', msg.type || msg);
         }
       };
     };
@@ -491,11 +491,11 @@ export class ExternalServer {
       var reconnectAttempts = 0;
 
       function connect() {
-        console.log('[Claude Monitor] SSE connecting...');
+        console.log('[Claude Live Monitor] SSE connecting...');
         evtSource = new EventSource('/events');
 
         evtSource.onopen = function() {
-          console.log('[Claude Monitor] SSE connected!');
+          console.log('[Claude Live Monitor] SSE connected!');
           reconnectAttempts = 0;
           banner.className = 'connected';
           banner.textContent = 'Connected to VS Code';
@@ -508,12 +508,12 @@ export class ExternalServer {
             // Dispatch to all modules via the same message event they expect
             window.dispatchEvent(new MessageEvent('message', { data: msg }));
           } catch(e) {
-            console.error('[Claude Monitor] Bad SSE message:', e);
+            console.error('[Claude Live Monitor] Bad SSE message:', e);
           }
         };
 
         evtSource.onerror = function() {
-          console.log('[Claude Monitor] SSE error/closed, attempt #' + reconnectAttempts);
+          console.log('[Claude Live Monitor] SSE error/closed, attempt #' + reconnectAttempts);
           evtSource.close();
           banner.className = 'disconnected';
           banner.textContent = 'Disconnected — reconnecting... (attempt ' + (reconnectAttempts + 1) + ')';

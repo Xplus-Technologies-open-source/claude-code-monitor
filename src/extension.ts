@@ -45,7 +45,7 @@ export function activate(context: vscode.ExtensionContext): void {
   // Try to restore previous session
   if (sessionStore.loadFromDisk(sessionStoragePath)) {
     vscode.window.showInformationMessage(
-      `Claude Monitor: Restored previous session (${sessionStore.getEvents().length} changes)`
+      `Claude Live Monitor: Restored previous session (${sessionStore.getEvents().length} changes)`
     );
   }
 
@@ -192,7 +192,7 @@ export function activate(context: vscode.ExtensionContext): void {
     }
 
     vscode.window.showInformationMessage(
-      paused ? 'Claude Monitor: Paused' : 'Claude Monitor: Resumed'
+      paused ? 'Claude Live Monitor: Paused' : 'Claude Live Monitor: Resumed'
     );
   });
 
@@ -262,7 +262,7 @@ export function activate(context: vscode.ExtensionContext): void {
     const current = config.get<boolean>('soundEnabled', false);
     await vscode.workspace.getConfiguration('claude-monitor').update('soundEnabled', !current, true);
     vscode.window.showInformationMessage(
-      `Claude Monitor: Sounds ${!current ? 'enabled' : 'disabled'}`
+      `Claude Live Monitor: Sounds ${!current ? 'enabled' : 'disabled'}`
     );
   });
 
@@ -291,9 +291,9 @@ export function activate(context: vscode.ExtensionContext): void {
 
     try {
       const port = await externalServer.start();
-      vscode.window.showInformationMessage(`Claude Monitor: External window opened on port ${port}`);
+      vscode.window.showInformationMessage(`Claude Live Monitor: External window opened on port ${port}`);
     } catch (_err) {
-      vscode.window.showErrorMessage(`Claude Monitor: Failed to start external server`);
+      vscode.window.showErrorMessage(`Claude Live Monitor: Failed to start external server`);
     }
   });
 

@@ -1,8 +1,8 @@
-# Claude Code Monitor
+# Claude Code Live Monitor
 
 **Real-time file monitoring, diffs, live stats, heatmaps, and session replay for Claude Code CLI.**
 
-Claude Code Monitor is a VS Code extension that watches every file change in your workspace as Claude Code works on your project. It captures before/after snapshots, computes diffs, tracks statistics, and presents everything in a beautiful, interactive dashboard.
+Claude Code Live Monitor is a VS Code extension that watches every file change in your workspace as Claude Code works on your project. It captures before/after snapshots, computes diffs, tracks statistics, and presents everything in a beautiful, interactive dashboard.
 
 ---
 
@@ -17,7 +17,7 @@ There are **5 ways** to access the monitor. The recommended approach depends on 
 | Method | How |
 |--------|-----|
 | **Keyboard shortcut** | `Ctrl+Alt+B` (`Cmd+Alt+B` on Mac) |
-| **Command Palette** | `Ctrl+Shift+P` → type "Browser" → select **Claude Code Monitor: Open in Browser (External Window)** |
+| **Command Palette** | `Ctrl+Shift+P` → type "Browser" → select **Claude Code Live Monitor: Open in Browser (External Window)** |
 | **Editor title bar** | Click the external link icon ($(link-external)) in the top-right corner of any editor tab |
 | **Activity Bar sidebar** | Click the eye icon in the left Activity Bar → click **"Open in Browser (2nd Monitor)"** button |
 
@@ -30,7 +30,7 @@ Opens the full dashboard as a tab inside VS Code.
 | Method | How |
 |--------|-----|
 | **Keyboard shortcut** | `Ctrl+Alt+M` (`Cmd+Alt+M` on Mac) |
-| **Command Palette** | `Ctrl+Shift+P` → type "Open Panel" → select **Claude Code Monitor: Open Panel** |
+| **Command Palette** | `Ctrl+Shift+P` → type "Open Panel" → select **Claude Code Live Monitor: Open Panel** |
 | **Editor title bar** | Click the eye icon ($(eye)) in the top-right corner of any editor tab |
 | **Activity Bar sidebar** | Click the eye icon in the left Activity Bar → click **"Open Full Dashboard"** button |
 
@@ -41,7 +41,7 @@ A mini dashboard always available in the VS Code sidebar. Shows:
 - Recent file changes feed
 - Quick action buttons (Open Dashboard, Pause/Resume, Open in Browser)
 
-**How to access:** Click the Claude Code Monitor eye icon in the left Activity Bar (vertical icon strip).
+**How to access:** Click the Claude Code Live Monitor eye icon in the left Activity Bar (vertical icon strip).
 
 ### 4. Status Bar (Ambient Info)
 
@@ -57,13 +57,13 @@ All commands are available via `Ctrl+Shift+P`:
 
 | Command | Keybinding | Description |
 |---------|-----------|-------------|
-| `Claude Code Monitor: Open in Browser (External Window)` | `Ctrl+Alt+B` | **Open in browser (recommended)** |
-| `Claude Code Monitor: Open Panel` | `Ctrl+Alt+M` | Open dashboard inside VS Code |
-| `Claude Code Monitor: Pause/Resume` | — | Toggle file monitoring |
-| `Claude Code Monitor: Clear Session` | — | Clear all history and reset stats |
-| `Claude Code Monitor: Start Replay` | — | Open panel and start replay |
-| `Claude Code Monitor: Export Session Log` | — | Export session as JSON/Markdown/clipboard |
-| `Claude Code Monitor: Toggle Sounds` | — | Enable/disable ambient sounds |
+| `Claude Code Live Monitor: Open in Browser (External Window)` | `Ctrl+Alt+B` | **Open in browser (recommended)** |
+| `Claude Code Live Monitor: Open Panel` | `Ctrl+Alt+M` | Open dashboard inside VS Code |
+| `Claude Code Live Monitor: Pause/Resume` | — | Toggle file monitoring |
+| `Claude Code Live Monitor: Clear Session` | — | Clear all history and reset stats |
+| `Claude Code Live Monitor: Start Replay` | — | Open panel and start replay |
+| `Claude Code Live Monitor: Export Session Log` | — | Export session as JSON/Markdown/clipboard |
+| `Claude Code Live Monitor: Toggle Sounds` | — | Enable/disable ambient sounds |
 
 ---
 
@@ -136,7 +136,7 @@ Export your session data:
 
 ```bash
 # 1. Clone and build
-cd claude-code-monitor
+cd claude-code-live-monitor
 npm install
 npm run build
 
@@ -144,13 +144,13 @@ npm run build
 npx vsce package --allow-missing-repository
 
 # 3. Install in VS Code
-code --install-extension claude-code-monitor-0.1.0.vsix --force
+code --install-extension claude-code-live-monitor-0.1.0.vsix --force
 ```
 
 ### Development Mode
 
 ```bash
-cd claude-code-monitor
+cd claude-code-live-monitor
 npm install
 npm run compile
 # Press F5 in VS Code -> opens Extension Development Host
