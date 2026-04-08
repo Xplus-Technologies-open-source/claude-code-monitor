@@ -273,9 +273,16 @@ export class SidebarProvider implements vscode.WebviewViewProvider {
         const icons = { created: '+', modified: '~', deleted: '-' };
         const el = document.createElement('div');
         el.className = 'recent-event';
-        el.innerHTML =
-          '<span class="event-icon ' + eventType + '">' + (icons[eventType] || '?') + '</span>' +
-          '<span class="event-name" title="' + fileName + '">' + fileName + '</span>';
+        const iconSpan = document.createElement('span');
+        const safeType = ['created', 'modified', 'deleted'].includes(eventType) ? eventType : '';
+        iconSpan.className = 'event-icon' + (safeType ? ' ' + safeType : '');
+        iconSpan.textContent = icons[eventType] || '?';
+        const nameSpan = document.createElement('span');
+        nameSpan.className = 'event-name';
+        nameSpan.title = fileName;
+        nameSpan.textContent = fileName;
+        el.appendChild(iconSpan);
+        el.appendChild(nameSpan);
         recentList.prepend(el);
         while (recentList.children.length > MAX_RECENT) {
           recentList.removeChild(recentList.lastChild);
