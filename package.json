@@ -11,7 +11,9 @@
   "license": "MIT",
   "icon": "media/icon.png",
   "engines": {
-    "vscode": "^1.85.0"
+    "vscode": "^1.85.0",
+    "node": ">=22",
+    "pnpm": ">=11"
   },
   "categories": [
     "Other",
@@ -177,7 +179,8 @@
     "watch": "node esbuild.mjs --watch",
     "build": "node esbuild.mjs --production",
     "lint": "tsc --noEmit",
-    "package": "npm run build && vsce package --allow-missing-repository"
+    "package": "npm run build && vsce package --allow-missing-repository",
+    "preinstall": "pnpm dlx only-allow pnpm"
   },
   "devDependencies": {
     "@types/diff": "^7.0.0",
@@ -189,5 +192,6 @@
   },
   "dependencies": {
     "diff": "^7.0.0"
-  }
+  },
+  "packageManager": "pnpm@11.0.0"
 }
